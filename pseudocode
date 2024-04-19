@@ -1,0 +1,48 @@
+Import necessary libraries: stdio.h, map, set, algorithm
+Define a global map P with the key as an integer and the value as a set of pairs of 
+integers
+Define a function named build that takes an integer n as input:
+ Define an integer array A with size 1 shifted left by 15
+ Define an integer array trans with values {2, 3, 1, 0}
+ Initialize an integer m as 1
+ Set the first element of A as 3
+ Iterate i from 1 to n:
+ Iterate j from m - 1 to 0 with a decrement of 1 and k from m:
+ Set A[k] as trans[A[j]]
+ Double the value of m
+ Initialize integers x and y as -1 and 0, respectively, and px and py as 0
+ Clear the map P
+ Iterate i from 0 to m:
+ If A[i] is 0, set x as px shifted left by 1 and y as py
+ Else if A[i] is 1, set x as px shifted left by 1 and y as py minus 1
+ Else if A[i] is 2, set x as (px shifted left by 1) minus 1 and y as py
+ Else set x as (px shifted left by 1) plus 1 and y as py
+ If A[i] is 0, insert a pair (x, 0) into the set at key y in map P
+ Else if A[i] is 1, insert a pair (x, 1) into the set at key y in map P
+ Else if A[i] is 2, insert a pair (x, 2) into the set at key y in map P
+ Else insert a pair (x, 3) into the set at key y in map P
+ If A[i] is 0, increment py by 1
+ Else if A[i] is 1, decrement py by 1
+ Else if A[i] is 2, decrement px by 1
+ Else increment px by 1
+Define the main function:
+ Iterate until input is provided for n and n is not zero:
+ Call the build function with n as input
+ Initialize mxy as negative infinity and mnx as positive infinity
+ Iterate over each element in map P using an iterator it:
+ Set mxy as the maximum value between mxy and it->first
+ Iterate over each element in the set associated with the current iterator it 
+using an iterator jt:
+ Set mnx as the minimum value between mnx and jt->first
+ Iterate over each element in map P in reverse order using a reverse iterator it:
+ Initialize i as mnx
+ Iterate over each element in the set associated with the current reverse 
+iterator it using an iterator jt:
+ Iterate until i is less than jt->first:
+ Print a space character, increment i by 1
+ Increment i by 1
+ If jt->second is 0 or 1, print a vertical bar character '|'
+ Else print an underscore character '_'
+ Print a new line
+ Print a caret character '^'
+Exit the program
